@@ -26,6 +26,7 @@ export default function Homepage(props) {
       </div>
       <div style={{ textAlign: "center" }}>
         <h1 > Or join a conversation going on right now</h1>
+        <Icon name='triangle down' size='big' />
       </div>
       <Grid>
         <Grid.Row columns={4}>

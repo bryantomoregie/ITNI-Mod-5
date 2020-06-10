@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
             rating: params[:rating],
             flag: params[:flag],
             user_id: params[:user_id],
-            post: params[:post_id]
+            post_id: params[:post_id]
         })
 
         render(json: comment)
