@@ -37,7 +37,7 @@ export default function Navigation(props) {
 
           name='ITNI'
           active={activeItem === 'ITNI'}
-          onClick={handleItemClick}
+          onClick={() => history.push('/')}
         />
         <Menu.Item
           name='Join a Discussion'

@@ -23,6 +23,16 @@ Discussion.create({title: "Religion", description: "To discuss religion", public
 
 Post.create({original_post: "Are these protest helping or hurting the cause for reform in this country?", image: "http://tiny.cc/kxc9pz", user_id: User.all.sample().id, discussion_id: Discussion.all.sample().id})
 Post.create({original_post: "Was the Protestant Reformation necessary?", image: "http://tiny.cc/z4d9pz", user_id: User.all.sample().id, discussion_id: Discussion.all.sample().id})
+Post.create({original_post: "Is Michael Jordan the greatest of all time?", image: "http://tiny.cc/z4d9pz", user_id: User.all.sample().id, discussion_id: Discussion.all.sample().id})
+Post.create({original_post: "Are these protest helping or hurting the cause for reform in this country?", image: "http://tiny.cc/kxc9pz", user_id: User.all.sample().id, discussion_id: Discussion.all.sample().id})
+Post.create({original_post: "Was the Protestant Reformation necessary?", image: "http://tiny.cc/z4d9pz", user_id: User.all.sample().id, discussion_id: Discussion.all.sample().id})
+Post.create({original_post: "Is Michael Jordan the greatest of all time?", image: "http://tiny.cc/z4d9pz", user_id: User.all.sample().id, discussion_id: Discussion.all.sample().id})
+Post.create({original_post: "Are these protest helping or hurting the cause for reform in this country?", image: "http://tiny.cc/kxc9pz", user_id: User.all.sample().id, discussion_id: Discussion.all.sample().id})
+Post.create({original_post: "Was the Protestant Reformation necessary?", image: "http://tiny.cc/z4d9pz", user_id: User.all.sample().id, discussion_id: Discussion.all.sample().id})
+Post.create({original_post: "Is Michael Jordan the greatest of all time?", image: "http://tiny.cc/z4d9pz", user_id: User.all.sample().id, discussion_id: Discussion.all.sample().id})
+Post.create({original_post: "Are these protest helping or hurting the cause for reform in this country?", image: "http://tiny.cc/kxc9pz", user_id: User.all.sample().id, discussion_id: Discussion.all.sample().id})
+Post.create({original_post: "Was the Protestant Reformation necessary?", image: "http://tiny.cc/z4d9pz", user_id: User.all.sample().id, discussion_id: Discussion.all.sample().id})
+Post.create({original_post: "Is Michael Jordan the greatest of all time?", image: "http://tiny.cc/z4d9pz", user_id: User.all.sample().id, discussion_id: Discussion.all.sample().id})
 
 
 # Invitation.create(invitation: "Yes")

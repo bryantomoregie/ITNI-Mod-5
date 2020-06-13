@@ -5,9 +5,12 @@ import CommentCardContainer from '../containers/CommentCardContainer'
 
 
 export default function PostCard(props) {
+    //  debugger
 
     let history = useHistory()
     let params = useParams()
+
+
 
     let [post, setPost] = useState({
         original_post: null,
@@ -21,7 +24,7 @@ export default function PostCard(props) {
             .then(resp => resp.json())
             .then(post => setPost(post))
             // debugger
-            console.log(post)
+            // console.log(post)
     }, [])
 
 
@@ -63,7 +66,7 @@ export default function PostCard(props) {
                     </h1>
                     
                 </Header>
-                    <CommentCardContainer post={post} />
+                    <CommentCardContainer user={props.user} post={post} />
 
                 </Modal.Description>
             </Modal.Content>

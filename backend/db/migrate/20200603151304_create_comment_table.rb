@@ -3,8 +3,9 @@ class CreateCommentTable < ActiveRecord::Migration[6.0]
     create_table :comments do |t|
       t.string :text
       t.string :stance
-      t.string :rating
-      t.string :flag
+      t.integer :changed_mind
+      t.integer :made_me_think
+      t.integer :flag
       t.integer :user_id
       t.integer :post_id
     end

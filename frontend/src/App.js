@@ -10,6 +10,7 @@ import PostsCard from './components/PostsCard';
 import Profile from './components/Profile';
 import CommentCardContainer from './containers/CommentCardContainer'
 import CommentCard from './components/CommentCard'
+import TopicContainer from './containers/TopicContainer'
 
 
 function App() {
@@ -18,35 +19,8 @@ function App() {
   let [posts, setPosts] = useState([])
   let [user, setUser] = useState(null)
 
+
   let setCurrentUser = (currentUser) => { setUser(currentUser) }
-
-
-  useEffect(() => {
-    fetch('http://localhost:3000/discussions', {
-      method: 'GET',
-      credentials: 'include'
-    })
-      .then(res => res.json())
-      .then(discussionTopics => {
-        console.log(discussionTopics)
-        setDiscussions(discussionTopics)
-        // debugger
-      })
-  }, [])
-
-  useEffect(() => {
-    fetch('http://localhost:3000/posts', {
-      method: 'GET',
-      credentials: 'include'
-    })
-      .then(res => res.json())
-      .then(allposts => {
-        console.log(posts)
-        setPosts(allposts)
-        // debugger
-      })
-    console.log(posts)
-  }, [])
 
 
   useEffect(() => {
@@ -58,12 +32,38 @@ function App() {
     })
       .then(resp => resp.json())
       .then(currentUser => setUser(currentUser))
-    // debugger
   }, [])
 
 
 
+  useEffect(() => {
+    fetch('http://localhost:3000/discussions', {
+      method: 'GET',
+      credentials: 'include'
+    })
+      .then(res => res.json())
+      .then(discussionTopics => {
+        setDiscussions(discussionTopics)
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch('http://localhost:3000/posts', {
+      method: 'GET',
+      credentials: 'include'
+    })
+      .then(res => res.json())
+      .then(allposts => {
+        setPosts(allposts)
+      })
+  }, [])
+
+
+
+
+ 
   return (
+
     <div>
       <BrowserRouter>
 
@@ -73,12 +73,13 @@ function App() {
         </div>
         <br></br>
         <br></br>
-        <Route exact path="/posts/:id" component={() => <CommentCardContainer />} />
+        <Route exact path="/topics/:id" component={() => <TopicContainer user={user}/>} />
+        <Route exact path="/posts/:id" component={() => <CommentCardContainer user={user} />} />
         <Route exact path="/profile" component={() => <Profile />} />
         <Route exact path="/login" component={() => <Login setCurrentUser={setCurrentUser} />} />
-        <Route exact path="/" component={() => <Homepage discussions={discussions} posts={posts} />} />
-        <Route exact path="/topiccard" component={() => <DiscussionTopicCard />} />
+        <Route exact path="/" component={() => <Homepage user={user} discussions={discussions} posts={posts} />} />
         <Route exact path="/commentcard" component={() => <CommentCard user={user} />} />
+        <Route exact path="/postcard" component={() => <PostsCard/>} />
       </BrowserRouter>
     </div>
   );
