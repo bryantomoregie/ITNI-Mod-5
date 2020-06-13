@@ -19,7 +19,7 @@ export default function Homepage(props) {
         </div>
         <Grid>
         <Grid.Row columns={3}>
-            {props.discussions.map(discussion => <DiscussionTopicCard discussion={discussion} key={discussion.id}/>)}
+            {props.discussions.map(discussion => <DiscussionTopicCard user={props.user} discussion={discussion} key={discussion.id}/>)}
         </Grid.Row>
         </Grid>
         <br></br><br></br>
@@ -30,7 +30,7 @@ export default function Homepage(props) {
       </div>
       <Grid>
         <Grid.Row columns={4}>
-          {props.posts.map(post => <PostsCard post={post} key={post.id}/>)}
+          {props.posts.map(post => <PostsCard user={props.user} post={post} key={post.id}/>)}
         </Grid.Row>
       </Grid>
     </div>

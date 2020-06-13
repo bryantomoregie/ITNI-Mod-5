@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
   default_url_options :host => 'localhost:3000'
-  resources :discussions
-  resources :users, :comments, :discussions, :invitations, :posts
+  # resources :discussions
+  resources :users, :discussions, :invitations, :posts
+
+  get('/comments', to: 'comments#index')
+  
+  post('/comments', to: 'comments#create')
+  
+  get('/comments/:id', to: 'comments#show')
+  
+  patch('/comments/:id', to: 'comments#increment')
+
+  delete('/comments/:id', to: 'comments#destroy')
 
   post('/login', to: 'authentication#login')
   

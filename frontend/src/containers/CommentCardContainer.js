@@ -5,8 +5,10 @@ import CommentCard from '../components/CommentCard'
 
 
 export default function CommentCardContainer(props) {
-
+// debugger
   let params = useParams()
+
+  // let id = parseInt(localStorage.id)
 
   let [comments, setComments] = useState([])
 
@@ -16,28 +18,29 @@ export default function CommentCardContainer(props) {
 
   let setValue = (key, value) => {
     setComment({ ...comment, [key]: value })
-    // console.log(comment.text)
   }
 
   
+  
   let handleClick = (comment) => {
+    
     fetch('http://localhost:3000/comments', {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         text: comment.text,
-        stance: null,
-        rating: null,
-        flag: null,
+        stance: comment.stance,
+        changed_mind: 0,
+        made_me_think: 0,
+        flag: 0,
         user_id: props.user.id,
         post_id: props.post.id
       })
     })
     .then(resp => resp.json())
     .then(comment => setComments([...comments, comment]))
-    // .then(comment => setComment([initialValues]))
-    // setComment({initialValues})
+    setComment({initialValues})
   }
 
   useEffect(() => {
@@ -46,22 +49,23 @@ export default function CommentCardContainer(props) {
       credentials: 'include'
     })
       .then(resp => resp.json())
-      // .then(comments => console.log(comments))
       .then(comments => setComments(comments))
   }, [])
-  // debugger 
 
-
+  // debugger
+  let postComments = comments.filter(comment => comment.post_id === props.post.id)
 
   return (
-    <Comment.Group>
+
+    <Comment.Group threaded>
       <Header as='h3' dividing>
         Comments
       </Header>
-      {comments.map(comment => <CommentCard comment={comment} key={comment.id}/>)}
+      {postComments.map(comment => <CommentCard comment={comment} key={comment.id}/>)}
       <Form reply>
         <Form.TextArea value={comment.text} onChange={(e) => setValue('text', e.target.value)} />
-        <Button onClick={() => handleClick(comment)} content='Add Reply' labelPosition='left' icon='edit' primary />
+        <Button onClick={() => handleClick(comment)} content='Add Reply' labelPosition='left' icon='edit' color='green'/>
+        <Button onClick={() => setValue('stance', 'no')} content='Disssent' labelPosition='left' icon='hand paper outline' primary />
       </Form>
     </Comment.Group>
   )

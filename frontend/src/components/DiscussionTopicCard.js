@@ -1,18 +1,19 @@
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { Card, Icon, Image, Grid } from 'semantic-ui-react'
+import topiccontainer from '../containers/TopicContainer'
 
 
 export default function DiscussionTopicCard(props) {
 
-
+let history = useHistory()
 
 
 
     return (
         <Grid.Column>
-            
-                <Card>
+
+                <Card onClick={() => history.push(`/topics/${props.discussion.id}`)}>
                     <Image src={props.discussion.image} wrapped ui={false} />
                     <Card.Content>
                         <Card.Header style={{ textAlign: "center" }}>{props.discussion.title}</Card.Header>
