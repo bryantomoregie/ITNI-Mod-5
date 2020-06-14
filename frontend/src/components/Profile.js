@@ -1,24 +1,31 @@
 import React, { Component, useState, useEffect } from 'react';
-import { Tab, Feed, Icon, Card, Image, Grid } from 'semantic-ui-react'
+import { Tab, Feed, Icon, Card, Image, Grid, List } from 'semantic-ui-react'
+import { useParams, useHistory } from 'react-router-dom'
+import CommentsListRow from '../components/CommentsListRow'
+import PostListRow from '../components/PostListRow'
 
-export default function Profile() {
+
+export default function Profile(props) {
 
     let [user, setUser] = useState(null)
+    let params = useParams()
+    let id = parseInt(params.id)
 
     useEffect(() => {
-        fetch('http://localhost:3000/users', {
-          method: 'GET',
-          credentials: 'include'
+        fetch(`http://localhost:3000/users/${id}`, {
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json'
+          }
         })
-          .then(res => res.json())
-          .then(users => {
-            console.log(users)
-            setUser(users)
-            // debugger
-          })
-        console.log(user)
+          .then(resp => resp.json())
+          .then(currentUser => setUser(currentUser))
       }, [])
-
+    
+      if (user === null ){
+        return <h1>Loading</h1>
+    }
+    console.log(user)
 
 
 
@@ -26,118 +33,25 @@ export default function Profile() {
         {
             menuItem: 'All Activities',
             render: () => <Tab.Pane>
-                <Feed>
-                    <Feed.Event>
-                        <Feed.Label>
-                            <img src='http://tiny.cc/ywh9pz' />
-                        </Feed.Label>
-                        <Feed.Content>
-                            <Feed.Summary>
-                                <Feed.User>Elliot Fu</Feed.User> added you as a friend
-          <Feed.Date>1 Hour Ago</Feed.Date>
-                            </Feed.Summary>
-                            <Feed.Meta>
-                                <Feed.Like>
-                                    <Icon name='like' />4 Likes
-          </Feed.Like>
-                            </Feed.Meta>
-                        </Feed.Content>
-                    </Feed.Event>
-
-                    <Feed.Event>
-                        <Feed.Label image='http://tiny.cc/ywh9pz' />
-                        <Feed.Content>
-                            <Feed.Summary>
-                                <a>Helen Troy</a> added <a>2 new illustrations</a>
-                                <Feed.Date>4 days ago</Feed.Date>
-                            </Feed.Summary>
-                            <Feed.Extra images>
-                                <a>
-                                    <img src='http://tiny.cc/ywh9pz' />
-                                </a>
-                                <a>
-                                    <img src='http://tiny.cc/ywh9pz' />
-                                </a>
-                            </Feed.Extra>
-                            <Feed.Meta>
-                                <Feed.Like>
-                                    <Icon name='like' />1 Like
-          </Feed.Like>
-                            </Feed.Meta>
-                        </Feed.Content>
-                    </Feed.Event>
-
-                    <Feed.Event>
-                        <Feed.Label image='http://tiny.cc/ywh9pz' />
-                        <Feed.Content>
-                            <Feed.Summary
-                                date='2 Days Ago'
-                                user='Jenny Hess'
-                                content='add you as a friend'
-                            />
-                            <Feed.Meta>
-                                <Feed.Like>
-                                    <Icon name='like' />8 Likes
-          </Feed.Like>
-                            </Feed.Meta>
-                        </Feed.Content>
-                    </Feed.Event>
-
-                    <Feed.Event>
-                        <Feed.Label image='http://tiny.cc/ywh9pz' />
-                        <Feed.Content>
-                            <Feed.Summary>
-                                <a>Joe Henderson</a> posted on his page
-          <Feed.Date>3 days ago</Feed.Date>
-                            </Feed.Summary>
-                            <Feed.Extra text>
-                                Ours is a life of constant reruns. We're always circling back to where
-                                we'd we started, then starting all over again. Even if we don't run
-                                extra laps that day, we surely will come back for more of the same
-                                another day soon.
-        </Feed.Extra>
-                            <Feed.Meta>
-                                <Feed.Like>
-                                    <Icon name='like' />5 Likes
-          </Feed.Like>
-                            </Feed.Meta>
-                        </Feed.Content>
-                    </Feed.Event>
-
-                    <Feed.Event>
-                        <Feed.Label image='http://tiny.cc/ywh9pz' />
-                        <Feed.Content>
-                            <Feed.Summary>
-                                <a>Justen Kitsune</a> added <a>2 new photos</a> of you
-          <Feed.Date>4 days ago</Feed.Date>
-                            </Feed.Summary>
-                            <Feed.Extra images>
-                                <a>
-                                    <img src='http://tiny.cc/ywh9pzg' />
-                                </a>
-                                <a>
-                                    <img src='http://tiny.cc/ywh9pz' />
-                                </a>
-                            </Feed.Extra>
-                            <Feed.Meta>
-                                <Feed.Like>
-                                    <Icon name='like' />
-            41 Likes
-          </Feed.Like>
-                            </Feed.Meta>
-                        </Feed.Content>
-                    </Feed.Event>
-                </Feed>
             </Tab.Pane>,
         },
         {
             menuItem: 'Posts',
-            render: () => <Tab.Pane>Posts</Tab.Pane>,
+            render: () => <Tab.Pane>
+                <List celled>
+           {user.posts.map( post => <PostListRow post={post} user={user}/>)}
+                </List>
+                </Tab.Pane>,
         },
         {
             menuItem: 'Comments',
-            render: () => <Tab.Pane>Comments</Tab.Pane>,
+            render: () => <Tab.Pane>
+                <List celled>
+           {user.comments.map( comment => <CommentsListRow comment={comment} user={user}/>)}
+                </List>
+            </Tab.Pane>,
         },
+       
         {
             menuItem: 'Learned From',
             render: () => <Tab.Pane>Learned From</Tab.Pane>,

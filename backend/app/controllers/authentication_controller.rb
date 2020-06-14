@@ -5,7 +5,7 @@ class AuthenticationController < ApplicationController
       user = User.find_by({email: params[:email]})
       if (user && user.authenticate(params[:password]))
           session[:user_id] = user.id
-          render(json: {success: true, user: user})
+          render(json: {success: true, user: user, :include => [:comments, :posts]})
       else 
           render(json: {success: false, user: nil, message:'Not logged in.'})
       end
@@ -17,7 +17,7 @@ class AuthenticationController < ApplicationController
               render(json: current_user)
           else 
               current_user = nil
-              render(json: current_user)
+              render(json: current_user, :include => [:comments, :posts])
           end
         end
         

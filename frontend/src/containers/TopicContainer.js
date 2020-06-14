@@ -14,7 +14,7 @@ export default function TopicContainer(props) {
     let [topic, setTopic] = useState([])
 
     // let topicDiscussion = topic[0]
-debugger
+// debugger
 
     useEffect(() => {
         fetch('http://localhost:3000/posts')

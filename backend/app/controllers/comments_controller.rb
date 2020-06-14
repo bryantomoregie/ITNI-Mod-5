@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
     
     def index   
         comments = Comment.all 
-        render(json: comments, :include => :user)
+        render(json: comments, :include => [:user, :post])
     end
 
     def create 
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
             post_id: params[:post_id]
         })
 
-        render(json: comment, :include => :user)
+        render(json: comment, :include => [:user, :post])
     end
 
     def increment 
@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
 
         comment.update({params[:currentKey].to_sym => params[:newValue]})
         
-        render(json: comment, :include => :user)
+        render(json: comment, :include => [:user, :post])
     end
 
    
@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
     def show 
         comment = Comment.find(params[:id])
 
-        render(json: comment, :include => :user)
+        render(json: comment, :include => [:user, :post])
     end 
 
     def destroy 

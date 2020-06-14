@@ -11,7 +11,8 @@ import Profile from './components/Profile';
 import CommentCardContainer from './containers/CommentCardContainer'
 import CommentCard from './components/CommentCard'
 import TopicContainer from './containers/TopicContainer'
-
+import CommentsListRow from './components/CommentsListRow'
+import PostListRow from './components/PostListRow'
 
 function App() {
 
@@ -73,9 +74,11 @@ function App() {
         </div>
         <br></br>
         <br></br>
+        <Route exact path="/postlistrow" component={() => <PostListRow/>} />
+        <Route exact path="/commentslistrow" component={() => <CommentsListRow/>} />
         <Route exact path="/topics/:id" component={() => <TopicContainer user={user}/>} />
         <Route exact path="/posts/:id" component={() => <CommentCardContainer user={user} />} />
-        <Route exact path="/profile" component={() => <Profile />} />
+        <Route exact path="/profile/:id" component={() => <Profile user={user}/>} />
         <Route exact path="/login" component={() => <Login setCurrentUser={setCurrentUser} />} />
         <Route exact path="/" component={() => <Homepage user={user} discussions={discussions} posts={posts} />} />
         <Route exact path="/commentcard" component={() => <CommentCard user={user} />} />
