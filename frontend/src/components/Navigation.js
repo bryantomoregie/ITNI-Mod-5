@@ -58,7 +58,7 @@ export default function Navigation(props) {
               <Icon name='mail' size='large' />
               <Dropdown text={props.user.first_name} secondary floated="right">
                 <Dropdown.Menu>
-                  <Dropdown.Item text='Profile' />
+                  <Dropdown.Item onClick={() =>history.push(`/profile/${props.user.id}`)} text='Profile' />
                   <Dropdown.Item text='Create Post' />
                   <Dropdown.Item onClick={() => handleLogout()} text='Log Out' />
                 </Dropdown.Menu>

@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_03_153827) do
+ActiveRecord::Schema.define(version: 2020_06_14_003123) do
+
+  create_table "changedminds", force: :cascade do |t|
+    t.string "text"
+    t.string "stance"
+    t.integer "changed_mind"
+    t.integer "made_me_think"
+    t.integer "flag"
+    t.integer "user_id"
+    t.integer "comment_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string "text"
