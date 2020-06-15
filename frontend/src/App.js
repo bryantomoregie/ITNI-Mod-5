@@ -13,6 +13,8 @@ import CommentCard from './components/CommentCard'
 import TopicContainer from './containers/TopicContainer'
 import CommentsListRow from './components/CommentsListRow'
 import PostListRow from './components/PostListRow'
+import ListOfTopicsContainer from './containers/ListOfTopicsContainer'
+
 
 function App() {
 
@@ -74,6 +76,7 @@ function App() {
         </div>
         <br></br>
         <br></br>
+        <Route exact path="/listoftopics" component={() => <ListOfTopicsContainer/>} />
         <Route exact path="/postlistrow" component={() => <PostListRow/>} />
         <Route exact path="/commentslistrow" component={() => <CommentsListRow/>} />
         <Route exact path="/topics/:id" component={() => <TopicContainer user={user}/>} />

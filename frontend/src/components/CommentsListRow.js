@@ -8,7 +8,7 @@ export default function CommentsListRow(props) {
 
     let array = props.user.posts
 
-    let x = array.filter(posts => posts.id === props.comment.post_id)
+    let x = array.filter(posts => posts.id === props.user.post_id)
 
     // debugger
     return (
@@ -16,7 +16,7 @@ export default function CommentsListRow(props) {
         <List.Item>
             <Image avatar src={x[0].image} />
             <List.Content onClick={console.log("hello")}>
-            <List.Header onClick={console.log("hello")}>{props.user.first_name} </List.Header>
+                <List.Header onClick={console.log("hello")}>{props.user.first_name} </List.Header>
                 Changed Mind: {props.comment.changed_mind} Made Me Think: {props.comment.made_me_think} Flag: {props.comment.flag}<br></br>
                 {props.comment.text}
             </List.Content>

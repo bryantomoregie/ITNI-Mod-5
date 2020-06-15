@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   default_url_options :host => 'localhost:3000'
   # resources :discussions
-  resources :users, :discussions, :invitations, :posts, :changes
+  resources :users, :discussions, :invitations, :posts, :changedminds
 
   get('/comments', to: 'comments#index')
   

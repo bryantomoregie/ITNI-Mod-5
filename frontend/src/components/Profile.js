@@ -7,22 +7,23 @@ import PostListRow from '../components/PostListRow'
 
 export default function Profile(props) {
 
+
     let [user, setUser] = useState(null)
     let params = useParams()
     let id = parseInt(params.id)
 
     useEffect(() => {
         fetch(`http://localhost:3000/users/${id}`, {
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json'
-          }
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
-          .then(resp => resp.json())
-          .then(currentUser => setUser(currentUser))
-      }, [])
-    
-      if (user === null ){
+            .then(resp => resp.json())
+            .then(currentUser => setUser(currentUser))
+    }, [])
+
+    if (user === null) {
         return <h1>Loading</h1>
     }
     console.log(user)
@@ -39,19 +40,19 @@ export default function Profile(props) {
             menuItem: 'Posts',
             render: () => <Tab.Pane>
                 <List celled>
-           {user.posts.map( post => <PostListRow post={post} user={user}/>)}
+                    {user.posts.map(post => <PostListRow post={post} user={user} />)}
                 </List>
-                </Tab.Pane>,
+            </Tab.Pane>,
         },
         {
             menuItem: 'Comments',
             render: () => <Tab.Pane>
                 <List celled>
-           {user.comments.map( comment => <CommentsListRow comment={comment} user={user}/>)}
+                    {user.comments.map(comment => <CommentsListRow comment={comment} user={user} />)}
                 </List>
             </Tab.Pane>,
         },
-       
+
         {
             menuItem: 'Learned From',
             render: () => <Tab.Pane>Learned From</Tab.Pane>,
@@ -74,14 +75,14 @@ export default function Profile(props) {
             </Grid.Column>
             <Grid.Column width={4}>
                 <Card >
-                    <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
+                    <Image src={user.image} wrapped ui={false} />
                     <Card.Content>
-                        <Card.Header>Matthew</Card.Header>
+                        <Card.Header>{user.first_name} {user.last_name}</Card.Header>
                         <Card.Meta>
                             <span className='date'>Joined in 2015</span>
                         </Card.Meta>
                         <Card.Description>
-                            Matthew is a musician living in Nashville.
+                            Minds Changed: 70 <br></br>Thoughts Generated: 124
           </Card.Description>
                     </Card.Content>
                     <Card.Content extra>

@@ -2,7 +2,7 @@ class ChangedmindsController < ApplicationController
     
     def index   
         changedminds = Changedmind.all 
-        render(json: comments, :include => [:user, :post])
+        render(json: changedminds)
     end
 
     def create 
@@ -16,7 +16,7 @@ class ChangedmindsController < ApplicationController
             user_id: params[:user_id]
         })
 
-        render(json: change, :include => [:user, :comment])
+        render(json: changedmind, :include => [:user, :comment])
     end
 
   

@@ -15,7 +15,7 @@ class InvitationsController < ApplicationController
             post: params[:post_id]
         })
 
-        render(json: comment)
+        render(json: invitation)
     end
 
     def show 
