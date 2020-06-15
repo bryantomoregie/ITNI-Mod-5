@@ -4,13 +4,16 @@ import { Tab, Feed, Icon, Card, Image, Grid, List } from 'semantic-ui-react'
 
 
 export default function CommentsListRow(props) {
-    console.log(props)
 
-    let array = props.user.posts
 
-    let x = array.filter(posts => posts.id === props.user.post_id)
+    let array = props.user.posts //This gives me an array of all posts
 
-    // debugger
+    let x = array.filter(posts => posts.id === props.comment.post_id) 
+
+    if (x[0] === undefined){
+        return ''
+    }
+
     return (
 
         <List.Item>

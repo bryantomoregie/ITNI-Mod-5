@@ -29,12 +29,22 @@ export default function CommentCard(props) {
           }
       )
   })
-  .then( response => response.json())
-  .then(data => console.log(data))
+ createChangedMind()
   }
 
   let createChangedMind = () =>  {
-    
+  //   fetch('http://localhost:3000/, {
+  //     method: "POST",
+  //     headers: {
+  //         'Content-Type': 'application/json'
+  //     },
+  //     body:  JSON.stringify(
+  //         { 
+  //           currentKey: key,
+  //           newValue: change 
+  //         }
+  //     )
+  // })
   }
 
   let stanceColor = {border: "blue solid 1px"}
@@ -54,7 +64,7 @@ export default function CommentCard(props) {
         <Comment.Actions>
           <Comment.Action>Reply</Comment.Action>
           <Popup content='This Changed My Mind'
-          trigger={<Comment.Action onClick={() => incrementChange("changed_mind", comment.changed_mind + 1), () => createChangedMind("will this work")}><Icon name='exchange' />{comment.changed_mind}</Comment.Action>}
+          trigger={<Comment.Action onClick={() => incrementChange("changed_mind", comment.changed_mind + 1)}><Icon name='exchange' />{comment.changed_mind}</Comment.Action>}
           />
           <Popup content='This Made Me Think'
           trigger={<Comment.Action onClick={() => incrementChange("made_me_think", comment.made_me_think + 1)}><Icon name='coffee' /> {comment.made_me_think}</Comment.Action>}
