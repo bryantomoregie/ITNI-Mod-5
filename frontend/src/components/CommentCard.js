@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom'
 import { Button, Comment, Form, Header, Icon, Popup, Dropdown } from 'semantic-ui-react'
 
 export default function CommentCard(props) {
-  console.log(props.comment.user)
+
 
   let [comment, setComment] = useState({
     text: props.comment.text,
@@ -17,7 +17,6 @@ export default function CommentCard(props) {
 
   let incrementChange = (key, change) => {
     setComment({ ...comment, [key]: change })
-    console.log(comment)
     fetch(`http://localhost:3000/comments/${props.comment.id}`, {
       method: "PATCH",
       headers: {
@@ -27,10 +26,16 @@ export default function CommentCard(props) {
           { 
             currentKey: key,
             newValue: change 
-            // changed_mind: comment.changed_mind + 1
           }
       )
-  })}
+  })
+  .then( response => response.json())
+  .then(data => console.log(data))
+  }
+
+  let createChangedMind = () =>  {
+    
+  }
 
   let stanceColor = {border: "blue solid 1px"}
   if (props.comment.stance === null){
@@ -49,7 +54,7 @@ export default function CommentCard(props) {
         <Comment.Actions>
           <Comment.Action>Reply</Comment.Action>
           <Popup content='This Changed My Mind'
-          trigger={<Comment.Action onClick={() => incrementChange("changed_mind", comment.changed_mind + 1)}><Icon name='exchange' />{comment.changed_mind}</Comment.Action>}
+          trigger={<Comment.Action onClick={() => incrementChange("changed_mind", comment.changed_mind + 1), () => createChangedMind("will this work")}><Icon name='exchange' />{comment.changed_mind}</Comment.Action>}
           />
           <Popup content='This Made Me Think'
           trigger={<Comment.Action onClick={() => incrementChange("made_me_think", comment.made_me_think + 1)}><Icon name='coffee' /> {comment.made_me_think}</Comment.Action>}

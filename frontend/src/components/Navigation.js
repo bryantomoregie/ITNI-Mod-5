@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import { Menu, Segment, Button, Modal, Image, Header, Divider, Form, TextArea, Icon, Dropdown } from 'semantic-ui-react';
 import { useHistory } from 'react-router';
 import SignUp from '../components/SignUp'
+import ListOfTopicsContainer from '../containers/ListOfTopicsContainer'
 // import DropdownFunction from '../components/DropdownComponent'
 
 
@@ -12,9 +13,9 @@ export default function Navigation(props) {
 
   let [activeItem, setActiveItem] = useState('home')
 
-  let handleItemClick = (activeItem, name) => {
-    setActiveItem({ [activeItem]: name })
-  }
+  // let handleItemClick = (activeItem, name) => {
+  //   setActiveItem({ [activeItem]: name })
+  // }
 
   let handleLogout = () => {
     fetch('http://localhost:3000/logout', {
@@ -24,6 +25,7 @@ export default function Navigation(props) {
       }
     })
     props.setCurrentUser(null)
+    history.push('/')
   }
 
 
@@ -40,9 +42,10 @@ export default function Navigation(props) {
           onClick={() => history.push('/')}
         />
         <Menu.Item
+          onClick={() => history.push('/listoftopics')}
           name='Join a Discussion'
           active={activeItem === 'Join a Discussion'}
-          onClick={handleItemClick}
+          // onClick={handleItemClick}
         />
 
         <div class="right item">
