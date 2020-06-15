@@ -6,6 +6,16 @@ export default function Login() {
 
 let history = useHistory()
 
+let [user, setuser] = useState({
+  first_name: '',
+  last_name: '',
+  email: '',
+  password: ''
+})
+
+
+
+
 return (
 <div>
 <Modal.Header style={{ textAlign: "center" }} >Welcome to ITNI!</Modal.Header>
@@ -29,17 +39,22 @@ return (
         <Modal.Description style={{ textAlign: "center" }}>
           <br></br>
 
-          <Form size={'small'} key={'small'}>
+          <Form onSubmit={(e) => console.log(e)} size={'small'} key={'small'}>
             <Form.Group widths='equal'>
               <Form.Field
                 label='First name'
                 control='input'
                 placeholder='First name'
+
+                // value={user.first_name}
+                
               />
               <Form.Field
                 label='Last name'
                 control='input'
                 placeholder='Last name'
+                type="text"
+                // value={user.last_name}
               />
             </Form.Group>
             <Form.Group widths='equal'>
@@ -47,23 +62,21 @@ return (
                 label='email'
                 control='input'
                 placeholder='email'
+                // value={user.email}
               />
               <Form.Field
                 label='password'
                 control='input'
                 placeholder='password'
+                // value={user.password}
               />
             </Form.Group>
             <Divider hidden />
-            <Form.Field>
-              <input placeholder='Image URL' />
-            </Form.Field>
-            <TextArea placeholder='One line Credentials' style={{ minHeight: 50 }} />
-            <TextArea placeholder='Biographical Descriptions' style={{ minHeight: 100 }} />
+            <Button type='submit' primary floated="right">Submit</Button>
           </Form>
 
           <br></br>
-         <Button onClick={() => history.push('/login')} primary floated="right">Continue</Button>
+         {/* <Button type='submit' onClick={() => history.push('/login')} primary floated="right">Submit</Button> */}
 
         </Modal.Description>
       </Modal.Content>

@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
     def index
-
         users = User.all
         # byebug
         render(json: users, :include => [:comments, :posts])

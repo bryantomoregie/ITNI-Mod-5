@@ -29,19 +29,21 @@ export default function CommentCard(props) {
           }
       )
   })
- createChangedMind()
-  }
+  .then(resp => resp.json())
+  .then(data => createChangedMind(data))
+}
 
-  let createChangedMind = () =>  {
-  //   fetch('http://localhost:3000/, {
+  let createChangedMind = (data) =>  {
+    comment.log(data)
+  //   fetch('http://localhost:3000/changedminds',{
   //     method: "POST",
   //     headers: {
   //         'Content-Type': 'application/json'
   //     },
   //     body:  JSON.stringify(
   //         { 
-  //           currentKey: key,
-  //           newValue: change 
+  //           comment_id: comment.id,
+  //           user_id: user.id
   //         }
   //     )
   // })

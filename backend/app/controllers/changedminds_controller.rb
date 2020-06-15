@@ -7,11 +7,11 @@ class ChangedmindsController < ApplicationController
 
     def create 
         changedmind = Changedmind.create({
-            text: params[:text],
-            stance: params[:stance],
-            changed_mind: params[:changed_mind],
-            made_me_think: params[:made_me_think],
-            flag: params[:flag],
+            # text: params[:text],
+            # stance: params[:stance],
+            # changed_mind: params[:changed_mind],
+            # made_me_think: params[:made_me_think],
+            # flag: params[:flag],
             comment_id: params[:comment_id],
             user_id: params[:user_id]
         })
