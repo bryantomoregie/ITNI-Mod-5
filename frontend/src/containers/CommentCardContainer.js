@@ -70,6 +70,7 @@ export default function CommentCardContainer(props) {
           <div>
             <Button onClick={() => handleClick(comment)} content='Add Reply' labelPosition='left' icon='edit' color='green' />
             <Button onClick={() => setValue('stance', 'no')} content='Disssent' labelPosition='left' icon='hand paper outline' primary />
+            <Button color='#ff5c33' >Follow</Button>
           </div>
           :
           <div>
@@ -77,10 +78,10 @@ export default function CommentCardContainer(props) {
               <Modal.Content>
                 <Modal.Description style={{ textAlign: "center" }}>
                   <p>
-                   We're so glad you want to join the discussion!
+                    We're so glad you want to join the discussion!
                  </p>
                   <p>Please log in to let your voice be heard!</p>
-                  <Button onClick={() => history.push('/login')}content='Log In' labelPosition='left' icon='edit' color='grey' />
+                  <Button onClick={() => history.push('/login')} content='Log In' labelPosition='left' icon='edit' color='grey' />
 
                 </Modal.Description>
               </Modal.Content>

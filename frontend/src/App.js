@@ -63,7 +63,7 @@ function App() {
 
 
 
-
+console.log(discussions)
  
   return (
 
@@ -76,7 +76,7 @@ function App() {
         </div>
         <br></br>
         <br></br>
-        <Route exact path="/listoftopics" component={() => <ListOfTopicsContainer/>} />
+        <Route exact path="/listoftopics" component={() => <ListOfTopicsContainer discussions={discussions}/>} />
         <Route exact path="/postlistrow" component={() => <PostListRow/>} />
         <Route exact path="/commentslistrow" component={() => <CommentsListRow/>} />
         <Route exact path="/topics/:id" component={() => <TopicContainer user={user}/>} />

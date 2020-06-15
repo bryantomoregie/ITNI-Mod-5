@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
 
     def index
+
         users = User.all
+        # byebug
         render(json: users, :include => [:comments, :posts])
     end
     
@@ -24,7 +26,7 @@ class UsersController < ApplicationController
     def show    
         user = User.find(params[:id])
 
-        render(json: user, :include => [:comments, :posts])
+        render(json: user, :include => [:comments, :posts, ])
     end 
 
     def update 

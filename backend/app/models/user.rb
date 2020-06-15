@@ -4,7 +4,7 @@ class User < ApplicationRecord
     has_many :posts
     has_many :invitations
     has_many :changedminds
-    has_many :comments, through: :changedminds
+    has_many :changedmindcomments, through: :changedminds, source: :comment
     has_secure_password
 end
 
