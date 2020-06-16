@@ -14,6 +14,8 @@ import TopicContainer from './containers/TopicContainer'
 import CommentsListRow from './components/CommentsListRow'
 import PostListRow from './components/PostListRow'
 import ListOfTopicsContainer from './containers/ListOfTopicsContainer'
+import ChangedMindList from './components/ChangedMindList'
+import UserHomePage from './components/UserHomePage'
 
 
 function App() {
@@ -76,6 +78,8 @@ console.log(discussions)
         </div>
         <br></br>
         <br></br>
+        <Route exact path="/homepage" component={() => <UserHomePage user={user}/>} />
+        <Route exact path="/changedmindlist" component={() => <ChangedMindList discussions={discussions}/>} />
         <Route exact path="/listoftopics" component={() => <ListOfTopicsContainer discussions={discussions}/>} />
         <Route exact path="/postlistrow" component={() => <PostListRow/>} />
         <Route exact path="/commentslistrow" component={() => <CommentsListRow/>} />

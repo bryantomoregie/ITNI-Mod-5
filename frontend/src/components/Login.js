@@ -15,9 +15,9 @@ export default function LoginForm(props) {
     password: ''
   })
 
-  async function handleSubmit(e){
+let handleSubmit = (e) => {
     e.preventDefault()
-    let response = await fetch('http://localhost:3000/login',{
+    fetch('http://localhost:3000/login',{
         credentials: 'include',
         method: 'POST',
         headers: {
@@ -28,16 +28,22 @@ export default function LoginForm(props) {
             password: form.password
         })
     })
-    let {success, user} = await response.json()
-    if(success){
-        console.log(user)
-        console.log(user.id)
-        props.setCurrentUser(user)
-       history.push(`/`)
+    .then (res => res.json())
+    .then (data => 
+       props.setCurrentUser(data)
+      )
+    // let {user} = await response.json()
+    // if(user){
+    //     console.log(user)
+    //     // console.log(user.id)
+    //     // console.log(comments)
+    //     // console.log(posts)
+    //     props.setCurrentUser(user)
+    //    history.push(`/homepage`)
 
     }
 
-}
+
 
 
 

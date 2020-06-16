@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     def index
         users = User.all
         # byebug
-        render(json: users, :include => [:comments, :posts])
+        render(json: users, :include => [:comments, :posts, :changedminds, :mademethinks, :follows])
     end
     
     def create
@@ -18,14 +18,14 @@ class UsersController < ApplicationController
                 biographical_description: params[:biographical_description]
             })
 
-            render(json: user, :include => [:comments, :posts])
+            render(json: user, :include => [:comments, :posts, :changedminds, :mademethinks, :follows])
      
     end
 
     def show    
         user = User.find(params[:id])
 
-        render(json: user, :include => [:comments, :posts, ])
+        render(json: user, :include => [:comments, :posts, :changedminds, :mademethinks, :follows])
     end 
 
     def update 
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
             one_line_credential: params[:one_line_credentials],
             biographical_description: params[:biographical_description]
         })
-        render(json: user, :include => [:comments, :posts])
+        render(json: user, :include => [:comments, :posts, :changedminds, :mademethinks, :follows])
     end 
 
 

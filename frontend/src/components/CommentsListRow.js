@@ -5,7 +5,7 @@ import { Tab, Feed, Icon, Card, Image, Grid, List } from 'semantic-ui-react'
 
 export default function CommentsListRow(props) {
 
-debugger 
+
 
     // let array = props.user.posts //This gives me an array of all posts
 

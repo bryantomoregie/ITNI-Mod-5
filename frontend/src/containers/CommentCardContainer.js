@@ -52,7 +52,25 @@ export default function CommentCardContainer(props) {
       .then(comments => setComments(comments))
   }, [])
 
-  // debugger
+  let createFollow = () => {
+    fetch('http://localhost:3000/follows', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id: props.user.id,
+        post_id: props.post.id
+      })
+    })
+      .then(resp => resp.json())
+      .then(follow => console.log(follow))
+  }
+  
+    
+
+  
+
+
   let postComments = comments.filter(comment => comment.post_id === props.post.id)
 
   return (
@@ -70,7 +88,8 @@ export default function CommentCardContainer(props) {
           <div>
             <Button onClick={() => handleClick(comment)} content='Add Reply' labelPosition='left' icon='edit' color='green' />
             <Button onClick={() => setValue('stance', 'no')} content='Disssent' labelPosition='left' icon='hand paper outline' primary />
-            <Button color='#ff5c33' >Follow</Button>
+            {/* <Button onClick={() => setValue('stance', 'no')} content='Disssent' labelPosition='left' icon='hand paper outline' primary /> */}
+            <Button onClick={() => createFollow()} color='#ff5c33' >Follow</Button>
           </div>
           :
           <div>
