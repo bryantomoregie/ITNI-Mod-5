@@ -29,22 +29,60 @@ export default function CommentCard(props) {
           }
       )
   })
- createChangedMind()
+  .then(resp => resp.json())
+  .then(data => {
+    console.log(props)
+    createChangedMind(data)})
+}
+
+  let createChangedMind = (data) =>  {
+    console.log(data)
+    fetch('http://localhost:3000/changedminds',{
+      method: "POST",
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body:  JSON.stringify(
+          { 
+            comment_id: data.id,
+            user_id: props.user.id
+          }
+      )
+  })
   }
 
-  let createChangedMind = () =>  {
-  //   fetch('http://localhost:3000/, {
-  //     method: "POST",
-  //     headers: {
-  //         'Content-Type': 'application/json'
-  //     },
-  //     body:  JSON.stringify(
-  //         { 
-  //           currentKey: key,
-  //           newValue: change 
-  //         }
-  //     )
-  // })
+  let incrementChanges = (key, change) => {
+    setComment({ ...comment, [key]: change })
+    fetch(`http://localhost:3000/comments/${props.comment.id}`, {
+      method: "PATCH",
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body:  JSON.stringify(
+          { 
+            currentKey: key,
+            newValue: change 
+          }
+      )
+  })
+  .then(resp => resp.json())
+  .then(data => createMademethink(data))
+}
+
+  let createMademethink = (data) =>  {
+    console.log(data)
+    fetch('http://localhost:3000/mademethinks',{
+      method: "POST",
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body:  JSON.stringify(
+          { 
+            comment_id: data.id,
+            user_id: props.user.id
+          }
+      )
+  })
   }
 
   let stanceColor = {border: "blue solid 1px"}
@@ -67,11 +105,20 @@ export default function CommentCard(props) {
           trigger={<Comment.Action onClick={() => incrementChange("changed_mind", comment.changed_mind + 1)}><Icon name='exchange' />{comment.changed_mind}</Comment.Action>}
           />
           <Popup content='This Made Me Think'
-          trigger={<Comment.Action onClick={() => incrementChange("made_me_think", comment.made_me_think + 1)}><Icon name='coffee' /> {comment.made_me_think}</Comment.Action>}
+          trigger={<Comment.Action onClick={() => incrementChanges("made_me_think", comment.made_me_think + 1)}><Icon name='coffee' /> {comment.made_me_think}</Comment.Action>}
           />
-           <Popup content='Flag Comment'
-          trigger={<Comment.Action onClick={() => incrementChange("flag", comment.flag + 1)}><Icon name='flag' />{comment.flag}</Comment.Action>}
-         />
+           {/* <Dropdown 
+         text = { */}
+         <Popup content='Flag Comment'trigger={<Comment.Action onClick={() => incrementChange("flag", comment.flag + 1)}><Icon name='flag' />{comment.flag}</Comment.Action>}/>
+        {/* }
+          >
+            <Dropdown.Menu>
+      <Dropdown.Item text='New' />
+      <Dropdown.Item text='Open...' description='ctrl + o' />
+      <Dropdown.Item text='Save as...' description='ctrl + s' />
+      <Dropdown.Item text='Rename' description='ctrl + r' />
+    </Dropdown.Menu>
+          </Dropdown> */}
         </Comment.Actions>
       </Comment.Content>
     </Comment>

@@ -10,14 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_14_003123) do
+ActiveRecord::Schema.define(version: 2020_06_16_125453) do
 
   create_table "changedminds", force: :cascade do |t|
-    t.string "text"
-    t.string "stance"
-    t.integer "changed_mind"
-    t.integer "made_me_think"
-    t.integer "flag"
     t.integer "user_id"
     t.integer "comment_id"
   end
@@ -39,9 +34,19 @@ ActiveRecord::Schema.define(version: 2020_06_14_003123) do
     t.string "image"
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+  end
+
   create_table "invitations", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
+  end
+
+  create_table "mademethinks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "comment_id"
   end
 
   create_table "posts", force: :cascade do |t|

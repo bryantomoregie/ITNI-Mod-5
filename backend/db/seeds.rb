@@ -7,6 +7,8 @@ User.destroy_all
 Post.destroy_all
 Comment.destroy_all
 Changedmind.destroy_all
+Mademethink.destroy_all
+Follow.destroy_all
 
 
 10.times do 

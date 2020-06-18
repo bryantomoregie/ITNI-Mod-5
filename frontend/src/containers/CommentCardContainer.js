@@ -52,16 +52,35 @@ export default function CommentCardContainer(props) {
       .then(comments => setComments(comments))
   }, [])
 
-  // debugger
-  let postComments = comments.filter(comment => comment.post_id === props.post.id)
+  let createFollow = () => {
+    fetch('http://localhost:3000/follows', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id: props.user.id,
+        post_id: props.post.id
+      })
+    })
+      .then(resp => resp.json())
+      .then(follow => console.log(follow))
+  }
+  
+    
 
+  
+
+
+  let postComments = comments.filter(comment => comment.post_id === props.post.id)
+  console.log('Im hit')
   return (
 
     <Comment.Group threaded>
+      
       <Header as='h3' dividing>
         Comments
       </Header>
-      {postComments.map(comment => <CommentCard comment={comment} key={comment.id} />)}
+      {postComments.map(comment => <CommentCard user={props.user} comment={comment} key={comment.id} />)}
       <Form reply>
         <Form.TextArea value={comment.text} onChange={(e) => setValue('text', e.target.value)} />
 
@@ -70,18 +89,22 @@ export default function CommentCardContainer(props) {
           <div>
             <Button onClick={() => handleClick(comment)} content='Add Reply' labelPosition='left' icon='edit' color='green' />
             <Button onClick={() => setValue('stance', 'no')} content='Disssent' labelPosition='left' icon='hand paper outline' primary />
-            <Button color='#ff5c33' >Follow</Button>
+            {/* <Button onClick={() => setValue('stance', 'no')} content='Disssent' labelPosition='left' icon='hand paper outline' primary /> */}
+            <Button onClick={() => createFollow()} color='#ff5c33' >Follow</Button>
           </div>
           :
           <div>
             <Modal trigger={<Button content='Add Reply' labelPosition='left' icon='edit' color='green' />}>
               <Modal.Content>
                 <Modal.Description style={{ textAlign: "center" }}>
-                  <p>
+                
+                <p style={{ fontSize: 30, color: "black" }}>
+                  <span role="img" aria-label="face-hat">🥳</span>
                     We're so glad you want to join the discussion!
+                    <span role="img" aria-label="face-hat">🥳</span>
                  </p>
-                  <p>Please log in to let your voice be heard!</p>
-                  <Button onClick={() => history.push('/login')} content='Log In' labelPosition='left' icon='edit' color='grey' />
+                  <p style={{ fontSize: 20, color: "black" }}>Please log in to let your voice be heard!</p>
+                  <Button onClick={() => history.push('/login')} content='Log In' labelPosition='left' icon='edit' primary/>
 
                 </Modal.Description>
               </Modal.Content>

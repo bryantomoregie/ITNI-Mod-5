@@ -4,7 +4,7 @@ import { Tab, Feed, Icon, Card, Image, Grid, List } from 'semantic-ui-react'
 
 
 export default function PostListRow(props) {
-    console.log(props)
+ 
 
     // let array = props.user.posts
 

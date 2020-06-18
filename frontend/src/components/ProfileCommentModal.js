@@ -4,7 +4,7 @@ import { Card, Icon, Image, Grid, Modal, Header, Button, Comment, Form } from 's
 import CommentCardContainer from '../containers/CommentCardContainer'
 
 
-export default function PostCard(props) {
+export default function ProfileCommentModal(props) {
     //  debugger
 
     let history = useHistory()
@@ -27,6 +27,7 @@ export default function PostCard(props) {
             // console.log(post)
     }, [])
 
+
     console.log(props)
 
     return (
@@ -39,16 +40,16 @@ export default function PostCard(props) {
                         <Card.Header style={{ textAlign: "center" }}>{props.post.original_post}</Card.Header>
 
                         <Card.Meta>
-                            <span className='date'>Created in 2020</span>
+                            <span className='date'>Joined in 2020</span>
                         </Card.Meta>
                         <Card.Description>
-                            Matthew is a musician living in Nashville.
+                           
       </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
                         <a>
-                            <Icon name='conversation' />
-       {props.post.comments.length} Contributions to civil discourse
+                            <Icon name='user' />
+       
       </a>
                     </Card.Content>
                 </Card>
@@ -62,11 +63,12 @@ export default function PostCard(props) {
                 <Modal.Description>
                 <Header>
                     <h1>
-                    {post.original_post}
+                    {props.post.original_post}
                     </h1>
                     
                 </Header>
                     <CommentCardContainer user={props.user} post={post} />
+                    {/* <CommentCardContainer post={post} /> */}
                 </Modal.Description>
             </Modal.Content>
             <Modal.Actions>

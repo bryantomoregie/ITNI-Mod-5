@@ -2,7 +2,7 @@ class DiscussionsController < ApplicationController
     
     def index   
         discussions = Discussion.all 
-        render(json: discussions)
+        render(json: discussions, :include => :posts)
     end
 
     def create 
@@ -13,12 +13,12 @@ class DiscussionsController < ApplicationController
             image: params[:image]
         })
 
-        render(json: discussion)
+        render(json: discussion, :include => [:posts, :users])
     end
 
     def show 
         discussion = Discussion.find(params[:id])
-        render(json: discussion)
+        render(json: discussion, :include => [:posts, :users])
     end 
 
     def destroy 

@@ -28,41 +28,56 @@ export default function Navigation(props) {
     history.push('/')
   }
 
+  let [modalOpen, setModalOpen] = useState(false)
+
+let handleOpen = () => 
+{setModalOpen(true)
+  history.push('/login')
+}
+
+let handleClose = () => {setModalOpen(false)}
+// let handleOpen = () => {setModalOpen(true)}
+
+
 
   // const { activeItem } = activeItem
 
   return (
 
-    <Segment inverted>
-      <Menu inverted pointing secondary >
+    <Segment >
+      <Menu pointing secondary >
+        <div style={{ fontSize: 20, fontWeight: 'bold' }}>
         <Menu.Item
 
           name='ITNI'
           active={activeItem === 'ITNI'}
           onClick={() => history.push('/')}
         />
+        </div>
+        <div style={{ fontWeight: 'normal', fontSize: 20 }}>
         <Menu.Item
           onClick={() => history.push('/listoftopics')}
           name='Join a Discussion'
           active={activeItem === 'Join a Discussion'}
           // onClick={handleItemClick}
         />
+        </div>
 
         <div class="right item">
           {!props.user ?
             <div>
-              <Button onClick={() => history.push('/login')} secondary floated="right">Log In</Button>
-              <Modal trigger={<Button primary floated="right">Sign Up</Button>}>
-                <SignUp />
+              <Button onClick={() => history.push('login')}secondary floated="right">Log In</Button>
+              <Modal trigger={<Button onClick={() => handleOpen()}  floated="right">Sign Up</Button>}
+              open={modalOpen}
+              >
+                <SignUp handleClose={handleClose}/>
               </Modal>
             </div>
             :
             <div>
-              <Icon name='mail' size='large' />
               <Dropdown text={props.user.first_name} secondary floated="right">
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={() =>history.push(`/profile/${props.user.id}`)} text='Profile' />
-                  <Dropdown.Item text='Create Post' />
                   <Dropdown.Item onClick={() => handleLogout()} text='Log Out' />
                 </Dropdown.Menu>
 
