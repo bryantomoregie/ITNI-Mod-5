@@ -28,6 +28,17 @@ export default function Navigation(props) {
     history.push('/')
   }
 
+  let [modalOpen, setModalOpen] = useState(false)
+
+let handleOpen = () => 
+{setModalOpen(true)
+  history.push('/login')
+}
+
+let handleClose = () => {setModalOpen(false)}
+// let handleOpen = () => {setModalOpen(true)}
+
+
 
   // const { activeItem } = activeItem
 
@@ -51,9 +62,11 @@ export default function Navigation(props) {
         <div class="right item">
           {!props.user ?
             <div>
-              <Button onClick={() => history.push('/login')} secondary floated="right">Log In</Button>
-              <Modal trigger={<Button primary floated="right">Sign Up</Button>}>
-                <SignUp />
+              <Button onClick={() => history.push('login')}secondary floated="right">Log In</Button>
+              <Modal trigger={<Button onClick={() => handleOpen()} primary floated="right">Sign Up</Button>}
+              open={modalOpen}
+              >
+                <SignUp handleClose={handleClose}/>
               </Modal>
             </div>
             :

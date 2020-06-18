@@ -40,6 +40,8 @@ export default function TopicContainer(props) {
 
 console.log(topic)
     return (
+        <div style={{ textAlign: "center" }}>
+      
         <div>
             <Segment style={{ textAlign: "center", backgroundColor: "white" }} key="massive" size="massive">
 
@@ -48,11 +50,14 @@ console.log(topic)
                 <br></br>
 
             </Segment>
+            <Button primary >Start a Conversation</Button>
+            <br></br><br></br>
             <Grid>
                 <Grid.Row columns={3}>
                     {posts.map(post => <PostsCard user={props.user} post={post} key={post.id} />)}
                 </Grid.Row>
             </Grid >
+        </div>
         </div>
     )
 }

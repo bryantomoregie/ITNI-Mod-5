@@ -20,6 +20,7 @@ export default function ListOfTopicsContainer(props) {
     
 
 return(
+    <div>
     <Grid>
         <Grid.Column width={6}>
           <Search
@@ -30,6 +31,7 @@ return(
         {discussions.map(discussion => <DiscussionTopicCard user={props.user} discussion={discussion} key={discussion.id}/>)}
     </Grid.Row>
     </Grid>
+    </div>
 )
 
 }

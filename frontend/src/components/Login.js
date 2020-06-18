@@ -15,6 +15,12 @@ export default function LoginForm(props) {
     password: ''
   })
 
+
+
+  let [error, setError] = useState('')
+
+  
+
 let handleSubmit = (e) => {
     e.preventDefault()
     fetch('http://localhost:3000/login',{
@@ -29,29 +35,28 @@ let handleSubmit = (e) => {
         })
     })
     .then (res => res.json())
-    .then (data => 
-       props.setCurrentUser(data)
-      )
-    // let {user} = await response.json()
-    // if(user){
-    //     console.log(user)
-    //     // console.log(user.id)
-    //     // console.log(comments)
-    //     // console.log(posts)
-    //     props.setCurrentUser(user)
-    //    history.push(`/homepage`)
-
-    }
-
-
-
-
-
+    .then (data => {
+      console.log(data)
+      if (data.id != null) {
+        props.setCurrentUser(data)
+        history.push(`/profile/${data.id}`)
+        // setError('Incorrect Username/Password')
+      }
+      else {
+        setError('this is an error')
+      }
+    })}
 
 
   return (
     <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
       <Grid.Column style={{ maxWidth: 450 }}>
+      { (error != '')
+      ?
+      <Message negative><p>Not logged in </p></Message>
+      :
+      null
+      }
         <Header as='h2' color='black' textAlign='center'>
           Log-in to your account
       </Header>

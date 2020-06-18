@@ -2,16 +2,48 @@ import React, { Component, useState, useEffect } from 'react';
 import { Menu, Segment, Button, Modal, Image, Header, Divider, Form, TextArea } from 'semantic-ui-react';
 import { useHistory } from 'react-router';
 
-export default function Login() {
+export default function Login(props) {
 
 let history = useHistory()
 
-let [user, setuser] = useState({
-  first_name: '',
-  last_name: '',
-  email: '',
-  password: ''
-})
+const initialValues = { firstName: '', lastName: '', email: '', password: '' }
+
+
+let [form, setForm] = useState(
+ initialValues
+)
+
+let setValue = (key, value) => {
+  setForm({ ...form, [key]: value })
+}
+
+let handleSignup = (newUser) => {
+  fetch('http://localhost:3000/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newUser)
+  })
+  .then(resp => resp.json())
+  .then(data => setForm(initialValues))
+  handleClose()
+  props.handleClose()
+ history.push('/login')
+}
+
+
+let [modalOpen, setModalOpen] = useState(false)
+
+let handleOpen = () => {
+  setModalOpen(true)
+
+}
+
+let handleClose = () => {setModalOpen(false)
+  history.push('/')
+  props.handleClose()
+}
 
 
 
@@ -33,19 +65,23 @@ return (
     <br></br>
     <br></br>
     <br></br>
-    <Modal trigger={<Button primary floated="right">Continue</Button>}>
+    <Modal trigger={<Button onClick={() => handleOpen()}primary floated="right">Continue</Button>}
+    open={modalOpen}
+    // onClose={() => handleClose()}
+
+    >
       <Modal.Content>
         <Modal.Header style={{ textAlign: "center" }} >Please fill out information </Modal.Header>
         <Modal.Description style={{ textAlign: "center" }}>
           <br></br>
 
-          <Form onSubmit={(e) => console.log(e)} size={'small'} key={'small'}>
+          <Form  size={'small'} key={'small'}>
             <Form.Group widths='equal'>
               <Form.Field
                 label='First name'
                 control='input'
                 placeholder='First name'
-
+                onChange={e => setValue('firstName', e.target.value)}
                 // value={user.first_name}
                 
               />
@@ -54,6 +90,7 @@ return (
                 control='input'
                 placeholder='Last name'
                 type="text"
+                onChange={e => setValue('lastName', e.target.value)}
                 // value={user.last_name}
               />
             </Form.Group>
@@ -62,17 +99,21 @@ return (
                 label='email'
                 control='input'
                 placeholder='email'
+                onChange={e => setValue('email', e.target.value)}
                 // value={user.email}
               />
               <Form.Field
                 label='password'
                 control='input'
                 placeholder='password'
+                type='password'
+                onChange={e => setValue('password', e.target.value)}
                 // value={user.password}
               />
             </Form.Group>
             <Divider hidden />
-            <Button type='submit' primary floated="right">Submit</Button>
+            <Button  onClick={() => handleSignup(form)}type='submit' primary floated="right">Submit</Button>
+            <Button onClick={() => handleClose()}  primary floated="right">Cancel</Button>
           </Form>
 
           <br></br>

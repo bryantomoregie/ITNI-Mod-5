@@ -5,71 +5,27 @@ import CommentsListRow from '../components/CommentsListRow'
 import PostListRow from '../components/PostListRow'
 import ChangedMindList from '../components/ChangedMindList'
 import MadeMeThinkList from '../components/MadeMeThinkList'
+import UserHomePage from '../components/UserHomePage'
 
 
 
 export default function Profile(props) {
+  
 
-
-    let [user, setUser] = useState(null)
-    let [comments, setComments] = useState([])
-    let [changedmindtotal, setChangedmindtotal] = useState(0)
-    let params = useParams()
-    let id = parseInt(params.id)
-    
-
-    useEffect(() => {
-        fetch(`http://localhost:3000/users/${id}`, {
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(resp => resp.json())
-            .then(currentUser => {setUser(currentUser)
-                setChangedmindtotal(currentUser.changedminds.length)
-            }
-            )
-            
-            // sum()
-    }, [])
-
-    useEffect(() => {
-        fetch('http://localhost:3000/comments', {
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(resp => resp.json())
-            .then(comments => setComments(comments))
-    }, [])
-
-
-    if (user === null || comments === []) {
-        return <h1>Loading</h1>
-    }
-    console.log(comments)
-    console.log(user)
-
-    let changedMindComments = comments.filter(comment => user.changedminds.map(changedmind => changedmind.comment_id === comment.id))
-    let madeMeThinkComments = comments.filter(comment => user.mademethinks.map(mademethink => mademethink.comment_id === comment.id))
-
-    console.log(madeMeThinkComments)
-    console.log(changedMindComments)
-    console.log(comments)
+    console.log(props.user)
 
     const panes = [
         {
-            menuItem: 'All Activities',
+            menuItem: 'Following',
             render: () => <Tab.Pane>
+                <UserHomePage user={props.user}/>
             </Tab.Pane>,
         },
         {
             menuItem: 'Posts',
             render: () => <Tab.Pane>
                 <List celled>
-                    {user.posts.map(post => <PostListRow post={post} user={user} />)}
+                    {props.user.posts.map(post => <PostListRow post={post} user={props.user} />)}
                 </List>
             </Tab.Pane>,
         },
@@ -77,20 +33,20 @@ export default function Profile(props) {
             menuItem: 'Comments',
             render: () => <Tab.Pane>
                 <List celled>
-                    {user.comments.map(comment => <CommentsListRow comment={comment} user={user} />)}
+                    {props.user.comments.map(comment => <CommentsListRow comment={comment} user={props.user} />)}
                 </List>
             </Tab.Pane>,
         },
         {
             menuItem: 'Changed Your Mind',
             render: () => <Tab.Pane>
-                {changedMindComments.map(comment => <ChangedMindList user={user} comment={comment}/>)}
+                {props.user.changedminds.map(comment => <ChangedMindList user={props.user} comment={comment}/>)}
                 </Tab.Pane>,
         },
         {
             menuItem: 'Made Me Think',
             render: () => <Tab.Pane>
-                {madeMeThinkComments.map(comment => <MadeMeThinkList user={user} comment={comment}/>)}
+                {props.user.mademethinks.map(comment => <MadeMeThinkList user={props.user} comment={comment}/>)} 
                 </Tab.Pane>,
         },
       
@@ -104,6 +60,11 @@ export default function Profile(props) {
     //     return total;
     // }
 
+    if (props.user === null){
+        return <h1>loading</h1>
+    }
+
+    console.log(props.user)
 
     return (
         <Grid>
@@ -112,14 +73,14 @@ export default function Profile(props) {
             </Grid.Column>
             <Grid.Column width={4}>
                 <Card >
-                    <Image src={user.image} wrapped ui={false} />
+                    <Image src={props.user.image} wrapped ui={false} />
                     <Card.Content>
-                        <Card.Header>{user.first_name} {user.last_name}</Card.Header>
+                        <Card.Header>{props.user.first_name} {props.user.last_name}</Card.Header>
                         <Card.Meta>
-                            <span className='date'>Joined in 2015</span>
+                            <span className='date'>Joined in 2020</span>
                         </Card.Meta>
                         <Card.Description>
-                            Minds Changed: {changedmindtotal} <br></br>Thoughts Generated: 124
+                            Minds Changed: {props.user.changedminds.length} <br></br>Thoughts Generated: {props.user.mademethinks.length}
           </Card.Description>
                     </Card.Content>
                     <Card.Content extra>

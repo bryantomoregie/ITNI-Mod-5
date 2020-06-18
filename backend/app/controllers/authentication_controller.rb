@@ -5,13 +5,9 @@ class AuthenticationController < ApplicationController
       user = User.find_by({email: params[:email]})
       if (user && user.authenticate(params[:password]))
           session[:user_id] = user.id
-          # comments = user.comments
-          # posts = user.posts
-          # render(json: {success: true, user: user, comments: comments, posts: posts})
-          render :json => user.to_json(:include => [:posts, :comments])
-          # render(json: {{success: true}, {user: user, :include => [:comments, :posts, :changedminds, :mademethinks, :follows])}})
-  
-          # render(json:{ user: user, crops: crops, success: true, id: user.id})
+          # render :json => user.to_json(:include => [:posts, :comments => {:include => [:post, :user]}, :changedminds, :mademethinks, :follows => {:include => [:user, :post]}])
+          render :json => user.to_json(:include => [:posts, :follows => {:include => [:user, :post]}, :comments => {:include => [:user, :post]}, :changedminds=> {:include => [:user, :comment => {:include => [:post]}]}, :mademethinks=> {:include => [:user, :comment => {:include => [:post]}]}])
+
       else 
           render(json: {success: false, user: nil, message:'Not logged in.'})
       end
@@ -20,7 +16,9 @@ class AuthenticationController < ApplicationController
       def get_session_user
           if session[:user_id]
               current_user = User.find(session[:user_id])
-              render(json: current_user)
+              render :json => current_user.to_json(:include => [:posts, :follows => {:include => [:user, :post]}, :comments => {:include => [:user, :post]}, :changedminds=> {:include => [:user, :comment => {:include => [:post]}]}, :mademethinks=> {:include => [:user, :comment => {:include => [:post]}]}])
+
+              # render(json: current_user)
           else 
               current_user = nil
               render(json: current_user, :include => [:comments, :posts])

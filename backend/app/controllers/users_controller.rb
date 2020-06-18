@@ -12,13 +12,13 @@ class UsersController < ApplicationController
                 last_name: params[:lastName],
                 password: params[:password],
                 email: params[:email],
-                image: params[:image],
-                verified: params[:verified],
-                one_line_credential: params[:one_line_credentials],
-                biographical_description: params[:biographical_description]
+                image: 'http://tiny.cc/wufxqz',
+                verified: 'No',
+                one_line_credential: '',
+                biographical_description: ''
             })
 
-            render(json: user, :include => [:comments, :posts, :changedminds, :mademethinks, :follows])
+            render(json: user)
      
     end
 
