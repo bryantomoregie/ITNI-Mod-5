@@ -44,26 +44,30 @@ let handleClose = () => {setModalOpen(false)}
 
   return (
 
-    <Segment inverted>
-      <Menu inverted pointing secondary >
+    <Segment >
+      <Menu pointing secondary >
+        <div style={{ fontSize: 20, fontWeight: 'bold' }}>
         <Menu.Item
 
           name='ITNI'
           active={activeItem === 'ITNI'}
           onClick={() => history.push('/')}
         />
+        </div>
+        <div style={{ fontWeight: 'normal', fontSize: 20 }}>
         <Menu.Item
           onClick={() => history.push('/listoftopics')}
           name='Join a Discussion'
           active={activeItem === 'Join a Discussion'}
           // onClick={handleItemClick}
         />
+        </div>
 
         <div class="right item">
           {!props.user ?
             <div>
               <Button onClick={() => history.push('login')}secondary floated="right">Log In</Button>
-              <Modal trigger={<Button onClick={() => handleOpen()} primary floated="right">Sign Up</Button>}
+              <Modal trigger={<Button onClick={() => handleOpen()}  floated="right">Sign Up</Button>}
               open={modalOpen}
               >
                 <SignUp handleClose={handleClose}/>
@@ -71,11 +75,9 @@ let handleClose = () => {setModalOpen(false)}
             </div>
             :
             <div>
-              <Icon name='mail' size='large' />
               <Dropdown text={props.user.first_name} secondary floated="right">
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={() =>history.push(`/profile/${props.user.id}`)} text='Profile' />
-                  <Dropdown.Item text='Create Post' />
                   <Dropdown.Item onClick={() => handleLogout()} text='Log Out' />
                 </Dropdown.Menu>
 

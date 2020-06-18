@@ -8,7 +8,7 @@ export default function DiscussionTopicCard(props) {
 
 let history = useHistory()
 
-
+console.log(props)
 
     return (
         <Grid.Column>
@@ -18,16 +18,16 @@ let history = useHistory()
                     <Card.Content>
                         <Card.Header style={{ textAlign: "center" }}>{props.discussion.title}</Card.Header>
                         <Card.Meta>
-                            <span className='date'>Joined in 2015</span>
+                            <span className='date'>Created in 2020</span>
                         </Card.Meta>
                         <Card.Description>
-                            Matthew is a musician living in Nashville.
+                            Conversations about {props.discussion.title}
       </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
                         <a>
-                            <Icon name='user' />
-        22 Friends
+                            <Icon name='talk' />
+        {props.discussion.posts.length} Conversations happening
       </a>
                     </Card.Content>
                 </Card>

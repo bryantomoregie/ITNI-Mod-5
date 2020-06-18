@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     def index 
         posts = Post.all 
 
-        render(json: posts, :include => :user)
+        render(json: posts, :include => [:user, :comments])
     end 
 
     def create 
@@ -15,13 +15,13 @@ class PostsController < ApplicationController
             discussion_id: params[:discussion_id]
         })
 
-        render(json: post, :include => :user)
+        render(json: post, :include => [:user, :comments])
     end 
 
     def show 
         post = Post.find(params[:id])
         
-        render(json:post, :include => :user)
+        render(json:post, :include => [:user, :comments])
     end 
 
     def destroy 

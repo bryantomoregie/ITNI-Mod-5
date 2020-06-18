@@ -30,7 +30,9 @@ export default function CommentCard(props) {
       )
   })
   .then(resp => resp.json())
-  .then(data => createChangedMind(data))
+  .then(data => {
+    console.log(props)
+    createChangedMind(data)})
 }
 
   let createChangedMind = (data) =>  {
@@ -43,7 +45,7 @@ export default function CommentCard(props) {
       body:  JSON.stringify(
           { 
             comment_id: data.id,
-            user_id: data.user.id
+            user_id: props.user.id
           }
       )
   })
@@ -77,7 +79,7 @@ export default function CommentCard(props) {
       body:  JSON.stringify(
           { 
             comment_id: data.id,
-            user_id: data.user.id
+            user_id: props.user.id
           }
       )
   })
@@ -105,23 +107,18 @@ export default function CommentCard(props) {
           <Popup content='This Made Me Think'
           trigger={<Comment.Action onClick={() => incrementChanges("made_me_think", comment.made_me_think + 1)}><Icon name='coffee' /> {comment.made_me_think}</Comment.Action>}
           />
-           <Dropdown 
-         text = {<Popup content='Flag Comment'trigger={<Comment.Action onClick={() => incrementChange("flag", comment.flag + 1)}><Icon name='flag' />{comment.flag}</Comment.Action>}/>}
+           {/* <Dropdown 
+         text = { */}
+         <Popup content='Flag Comment'trigger={<Comment.Action onClick={() => incrementChange("flag", comment.flag + 1)}><Icon name='flag' />{comment.flag}</Comment.Action>}/>
+        {/* }
           >
             <Dropdown.Menu>
       <Dropdown.Item text='New' />
       <Dropdown.Item text='Open...' description='ctrl + o' />
       <Dropdown.Item text='Save as...' description='ctrl + s' />
       <Dropdown.Item text='Rename' description='ctrl + r' />
-      <Dropdown.Item text='Make a copy' />
-      <Dropdown.Item icon='folder' text='Move to folder' />
-      <Dropdown.Item icon='trash' text='Move to trash' />
-      <Dropdown.Divider />
-      <Dropdown.Item text='Download As...' />
-      <Dropdown.Item text='Publish To Web' />
-      <Dropdown.Item text='E-mail Collaborators' />
     </Dropdown.Menu>
-          </Dropdown>
+          </Dropdown> */}
         </Comment.Actions>
       </Comment.Content>
     </Comment>

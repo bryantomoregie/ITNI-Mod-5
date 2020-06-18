@@ -49,29 +49,34 @@ let handleClose = () => {setModalOpen(false)
 
 
 return (
-<div>
-<Modal.Header style={{ textAlign: "center" }} >Welcome to ITNI!</Modal.Header>
+<div  >
+<Modal.Header style={{ backgroundColor: "#99ccff", border: "2px solid black", fontSize: 50, textAlign: "center" }} >
+  <br></br>
+  Welcome to ITNI!
+  </Modal.Header>
 <Modal.Content>
 
-  <Modal.Description style={{ textAlign: "center" }}>
+  <Modal.Description style={{ border: "1px solid black", textAlign: "center" }}>
     <br></br>
     <br></br>
     <br></br>
     <br></br>
-    <p >
-      The number one place on the internet to share ideas, hear from others, and listen to experts.
+    <p style={{ fontSize: 30, textAlign: "center" }}>
+      A community of people <br></br>
+      asking questions <span role="img" aria-label="sheep">🔍</span> <br></br>
+      defending their position <span role="img" aria-label="sheep">🤜</span><span role="img" aria-label="sheep">🤛</span><br></br>
+      and learning from different perspectives! <span role="img" aria-label="sheep">💡</span><span role="img" aria-label="sheep">🎉</span><span role="img" aria-label="sheep">🤝</span>
         </p>
+  
     <br></br>
-    <br></br>
-    <br></br>
-    <br></br>
-    <Modal trigger={<Button onClick={() => handleOpen()}primary floated="right">Continue</Button>}
+    <Modal trigger={<Button onClick={() => handleOpen()}primary >Let's Begin</Button>}
     open={modalOpen}
     // onClose={() => handleClose()}
 
     >
+    
       <Modal.Content>
-        <Modal.Header style={{ textAlign: "center" }} >Please fill out information </Modal.Header>
+        <Modal.Header style={{ border: "2px solid black", fontSize: 20, textAlign: "center" }} >Please fill out information </Modal.Header>
         <Modal.Description style={{ textAlign: "center" }}>
           <br></br>
 

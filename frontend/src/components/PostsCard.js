@@ -27,7 +27,7 @@ export default function PostCard(props) {
             // console.log(post)
     }, [])
 
-
+    console.log(props)
 
     return (
         <Modal size={'fullscreen'} trigger={
@@ -39,7 +39,7 @@ export default function PostCard(props) {
                         <Card.Header style={{ textAlign: "center" }}>{props.post.original_post}</Card.Header>
 
                         <Card.Meta>
-                            <span className='date'>Joined in 2015</span>
+                            <span className='date'>Created in 2020</span>
                         </Card.Meta>
                         <Card.Description>
                             Matthew is a musician living in Nashville.
@@ -47,8 +47,8 @@ export default function PostCard(props) {
                     </Card.Content>
                     <Card.Content extra>
                         <a>
-                            <Icon name='user' />
-        22 Friends
+                            <Icon name='conversation' />
+       {props.post.comments.length} Contributions to civil discourse
       </a>
                     </Card.Content>
                 </Card>
@@ -67,7 +67,6 @@ export default function PostCard(props) {
                     
                 </Header>
                     <CommentCardContainer user={props.user} post={post} />
-
                 </Modal.Description>
             </Modal.Content>
             <Modal.Actions>

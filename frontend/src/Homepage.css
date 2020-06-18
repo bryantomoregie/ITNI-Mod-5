@@ -8,3 +8,9 @@
     font-size: calc(10px + 2vmin);
     color: white;
   }
+
+  div.a {
+    position: relative;
+   
+    left: 150px;
+  }

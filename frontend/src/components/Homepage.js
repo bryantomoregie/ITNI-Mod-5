@@ -13,15 +13,17 @@ export default function Homepage(props) {
   return (
     <div>
       <div style={{ textAlign: "center" }}>
-        <div style={{ textAlign: "center" }}>
-          <h1>Pick a topic to discuss</h1><br></br>
-          <Icon name='triangle down' size='big' />
-        </div>
-        <Grid>
+        <Segment style={{ border: "1px solid black", textAlign: "center", backgroundColor: "white"}}>
+          <h1>Pick from our popular topics</h1>
+          {/* <Icon name='triangle down' size='big' /> */}
+        </Segment>
+        <div class="a">
+        <Grid >
         <Grid.Row columns={3}>
             {props.discussions.map(discussion => <DiscussionTopicCard user={props.user} discussion={discussion} key={discussion.id}/>)}
         </Grid.Row>
         </Grid>
+        </div>
         <br></br><br></br>
       </div>
       <div style={{ textAlign: "center" }}>

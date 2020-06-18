@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import './App.css';
+import './Welcome.css';
 import Navigation from './components/Navigation'
 import { BrowserRouter, Route, useHistory } from 'react-router-dom';
 import Welcome from './components/Welcome'
@@ -16,6 +17,8 @@ import PostListRow from './components/PostListRow'
 import ListOfTopicsContainer from './containers/ListOfTopicsContainer'
 import ChangedMindList from './components/ChangedMindList'
 import UserHomePage from './components/UserHomePage'
+import CreatePost from './components/CreatePost'
+
 
 
 function App() {
@@ -65,20 +68,21 @@ function App() {
 
 
 
-console.log(discussions)
+console.log(user)
  
   return (
 
-    <div>
+    <div className="App" >
       <BrowserRouter>
 
-        <div className="App" >
+        {/* <div className="App" > */}
           <Navigation user={user} setCurrentUser={setCurrentUser} />
           <Route exact path="/" component={() => <Welcome />} />
-        </div>
-        <br></br>
-        <br></br>
+        {/* </div> */}
+        {/* <br></br> */}
+        {/* <br></br> */}
         <Route exact path="/homepage" component={() => <UserHomePage user={user}/>} />
+        <Route exact path="/createpost/:id" component={() => <CreatePost user={user}/>} />
         <Route exact path="/changedmindlist" component={() => <ChangedMindList discussions={discussions}/>} />
         <Route exact path="/listoftopics" component={() => <ListOfTopicsContainer discussions={discussions}/>} />
         <Route exact path="/postlistrow" component={() => <PostListRow/>} />

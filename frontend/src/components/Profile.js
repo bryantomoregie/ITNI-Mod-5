@@ -40,13 +40,17 @@ export default function Profile(props) {
         {
             menuItem: 'Changed Your Mind',
             render: () => <Tab.Pane>
+                <List celled>
                 {props.user.changedminds.map(comment => <ChangedMindList user={props.user} comment={comment}/>)}
+                </List>
                 </Tab.Pane>,
         },
         {
             menuItem: 'Made Me Think',
             render: () => <Tab.Pane>
+                 <List celled>
                 {props.user.mademethinks.map(comment => <MadeMeThinkList user={props.user} comment={comment}/>)} 
+                </List>
                 </Tab.Pane>,
         },
       
@@ -86,7 +90,7 @@ export default function Profile(props) {
                     <Card.Content extra>
                         <a>
                             <Icon name='user' />
-            22 Friends
+        {props.user.one_line_credential}
           </a>
                     </Card.Content>
                 </Card>

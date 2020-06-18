@@ -4,7 +4,7 @@ import { Card, Icon, Image, Grid, Modal, Header, Button, Comment, Form } from 's
 import CommentCardContainer from '../containers/CommentCardContainer'
 
 
-export default function UserFollowPostCards(props) {
+export default function ProfileCommentModal(props) {
     //  debugger
 
     let history = useHistory()
@@ -28,41 +28,42 @@ export default function UserFollowPostCards(props) {
     }, [])
 
 
+    console.log(props)
 
     return (
         <Modal size={'fullscreen'} trigger={
             <Grid.Column>
 
                 <Card>
-                    <Image src={props.post.post.image} wrapped ui={false} />
+                    <Image src={props.post.image} wrapped ui={false} />
                     <Card.Content>
-                        <Card.Header style={{ textAlign: "center" }}>{props.post.post.original_post}</Card.Header>
+                        <Card.Header style={{ textAlign: "center" }}>{props.post.original_post}</Card.Header>
 
                         <Card.Meta>
                             <span className='date'>Joined in 2020</span>
                         </Card.Meta>
                         <Card.Description>
-                     
+                           
       </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
                         <a>
                             <Icon name='user' />
-      
+       
       </a>
                     </Card.Content>
                 </Card>
 
             </Grid.Column>
         }>
-            <Modal.Header><h4></h4></Modal.Header>
+            <Modal.Header><h4>Stretch Goal Items. Topic, Poster. </h4></Modal.Header>
             <Modal.Content image scrolling>
-                <Image size='medium' src={props.post.post.image} wrapped />
+                <Image size='medium' src={props.post.image} wrapped />
 
                 <Modal.Description>
                 <Header>
                     <h1>
-                    {props.post.post.original_post}
+                    {props.post.original_post}
                     </h1>
                     
                 </Header>
