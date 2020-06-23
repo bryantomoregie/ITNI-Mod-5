@@ -42,7 +42,7 @@ export default function PostCard(props) {
                             <span className='date'>Created in 2020</span>
                         </Card.Meta>
                         <Card.Description>
-                            Matthew is a musician living in Nashville.
+                           
       </Card.Description>
                     </Card.Content>
                     <Card.Content extra>
@@ -55,7 +55,7 @@ export default function PostCard(props) {
 
             </Grid.Column>
         }>
-            <Modal.Header><h4>Stretch Goal Items. Topic, Poster. </h4></Modal.Header>
+            <Modal.Header><h4></h4></Modal.Header>
             <Modal.Content image scrolling>
                 <Image size='medium' src={props.post.image} wrapped />
 

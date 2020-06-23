@@ -53,7 +53,7 @@ let handleSubmit = (e) => {
       <Grid.Column style={{ maxWidth: 450 }}>
       { (error != '')
       ?
-      <Message negative><p>Not logged in </p></Message>
+      <Message negative><p>Username/Password is Incorrect</p></Message>
       :
       null
       }

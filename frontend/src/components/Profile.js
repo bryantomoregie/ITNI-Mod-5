@@ -12,7 +12,7 @@ import UserHomePage from '../components/UserHomePage'
 export default function Profile(props) {
   
 
-    console.log(props.user)
+    console.log(props)
 
     const panes = [
         {
@@ -25,7 +25,9 @@ export default function Profile(props) {
             menuItem: 'Posts',
             render: () => <Tab.Pane>
                 <List celled>
+                  
                     {props.user.posts.map(post => <PostListRow post={post} user={props.user} />)}
+                 
                 </List>
             </Tab.Pane>,
         },
@@ -33,7 +35,9 @@ export default function Profile(props) {
             menuItem: 'Comments',
             render: () => <Tab.Pane>
                 <List celled>
+                   
                     {props.user.comments.map(comment => <CommentsListRow comment={comment} user={props.user} />)}
+                  
                 </List>
             </Tab.Pane>,
         },
@@ -71,7 +75,7 @@ export default function Profile(props) {
     console.log(props.user)
 
     return (
-        <Grid>
+        <Grid style={{backgroundColor: "#f0f0f5"}}>
             <Grid.Column width={12}>
                 <Tab panes={panes} />
             </Grid.Column>

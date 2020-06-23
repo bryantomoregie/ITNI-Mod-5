@@ -40,7 +40,7 @@ export default function CommentCardContainer(props) {
     })
       .then(resp => resp.json())
       .then(comment => setComments([...comments, comment]))
-    setComment({ initialValues })
+    setComment( initialValues )
   }
 
   useEffect(() => {
@@ -68,7 +68,7 @@ export default function CommentCardContainer(props) {
   
     
 
-  
+  console.log(comment.text)
 
 
   let postComments = comments.filter(comment => comment.post_id === props.post.id)

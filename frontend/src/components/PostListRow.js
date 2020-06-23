@@ -13,12 +13,14 @@ export default function PostListRow(props) {
     return (
 
         <List.Item>
+            <br></br><br></br>
             <Image avatar src={props.post.image} />
             <List.Content >
             <List.Header >{props.user.first_name} </List.Header>
                 
                 {props.post.original_post}
             </List.Content>
+            <br></br><br></br>
         </List.Item>
 
 

@@ -19,7 +19,7 @@ export default function Homepage(props) {
         </Segment>
         <div class="a">
         <Grid >
-        <Grid.Row columns={3}>
+        <Grid.Row columns={4}>
             {props.discussions.map(discussion => <DiscussionTopicCard user={props.user} discussion={discussion} key={discussion.id}/>)}
         </Grid.Row>
         </Grid>
