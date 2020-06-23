@@ -21,7 +21,7 @@ console.log(props)
                             <span className='date'>Created in 2020</span>
                         </Card.Meta>
                         <Card.Description>
-                            Conversations about {props.discussion.title}
+                           {props.discussion.description}
       </Card.Description>
                     </Card.Content>
                     <Card.Content extra>

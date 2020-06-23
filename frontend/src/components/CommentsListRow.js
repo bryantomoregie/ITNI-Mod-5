@@ -10,6 +10,7 @@ export default function CommentsListRow(props) {
     return (
 
         <div >
+            <br></br><br></br>
             <Modal trigger={<List.Item >
                 <Image avatar src={props.comment.post.image} />
                 <List.Content >
@@ -21,7 +22,7 @@ export default function CommentsListRow(props) {
             }>
               <ProfileCommentModal user={props.user} post={props.comment.post} key={props.comment.post.id} />  
             </Modal>
-
+<br></br><br></br>
         </div>
 
     )

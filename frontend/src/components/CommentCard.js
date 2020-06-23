@@ -107,18 +107,17 @@ export default function CommentCard(props) {
           <Popup content='This Made Me Think'
           trigger={<Comment.Action onClick={() => incrementChanges("made_me_think", comment.made_me_think + 1)}><Icon name='coffee' /> {comment.made_me_think}</Comment.Action>}
           />
-           {/* <Dropdown 
-         text = { */}
+           <Dropdown 
+         text = {
          <Popup content='Flag Comment'trigger={<Comment.Action onClick={() => incrementChange("flag", comment.flag + 1)}><Icon name='flag' />{comment.flag}</Comment.Action>}/>
-        {/* }
+         }
           >
             <Dropdown.Menu>
-      <Dropdown.Item text='New' />
-      <Dropdown.Item text='Open...' description='ctrl + o' />
-      <Dropdown.Item text='Save as...' description='ctrl + s' />
-      <Dropdown.Item text='Rename' description='ctrl + r' />
+      <Dropdown.Item text='Irrelevant' />
+      <Dropdown.Item text='Personal Attack' />
+      <Dropdown.Item text='Circular Reasoning'/>
     </Dropdown.Menu>
-          </Dropdown> */}
+          </Dropdown> 
         </Comment.Actions>
       </Comment.Content>
     </Comment>
